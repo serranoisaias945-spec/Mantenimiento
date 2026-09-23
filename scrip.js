@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         btnConectar.addEventListener('click', conectarSupabase);
     } else {
         console.error("No se encontró el botón btnConectar en el HTML");
-    }
 }
+
 
 //Asignamos el evento clic al botón BUSCAR
 const btnBuscar = document.getElementById('btnBuscar');
@@ -71,7 +71,7 @@ async function buscarCategoria() {
             query = query.eq('id_categoria', id);
         }
         if (nombre) {
-            query = query.ilike('nombre', %${nombre}%); // 'nombre' es el campo real en Supabase
+            query = query.ilike('nombre', '%${nombre}%'); // 'nombre' es el campo real en Supabase
         }
 
         // 6. Ejecutar la consulta
@@ -90,7 +90,7 @@ async function buscarCategoria() {
         document.getElementById('nombre_categoria').value = data[0].nombre;
         document.getElementById('estado').value = data[0].estado;
 
-        alert(✅ Se encontraron ${data.length} resultado(s).);
+        alert('✅ Se encontraron ${data.length} resultado(s).');
 
     } catch (error) {
         alert("Error al buscar ❌: " + error.message);
